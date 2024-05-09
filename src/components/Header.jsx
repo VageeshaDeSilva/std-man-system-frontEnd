@@ -8,7 +8,7 @@ function Header() {
                     <nav class="relative flex items-center justify-between sm:h-10 md:justify-center" aria-label="Global">
                         <div class="flex items-center flex-1 md:absolute md:inset-y-0 md:left-0">
                             <div class="flex items-center justify-between w-full md:w-auto">
-                                <a href="#"><span class="sr-only">Company Name</span>
+                                <a href="#">
                                     <img class="w-auto h-8 sm:h-10" src="https://www.svgrepo.com/show/448244/pack.svg" loading="lazy" width="202" height="40"/>
                                 </a>
                                 <div class="flex items-center -mr-2 md:hidden">
@@ -23,17 +23,17 @@ function Header() {
                         </div>
                         <div class="hidden md:flex md:space-x-10 list-none">
                             <li>
-                                <a href="#" class="text-base font-normal text-gray-500 list-none hover:text-gray-900"
+                                <a href="/" class="text-base font-normal text-gray-500 list-none hover:text-gray-900"
                                     target="">Home</a>
                             </li>
                             <li>
-                                <a href="#" class="text-base font-normal text-gray-500 list-none hover:text-gray-900"
+                                <a href="/student" class="text-base font-normal text-gray-500 list-none hover:text-gray-900"
                                     target="">Students
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="text-base font-normal text-gray-500 list-none hover:text-gray-900"
-                                    target="_blank">About Us
+                                <a href="/about" class="text-base font-normal text-gray-500 list-none hover:text-gray-900"
+                                    target="">About Us
                                 </a>
                             </li>
                         </div>
