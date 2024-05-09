@@ -1,0 +1,9 @@
+.tblHeader {
+    @apply
+    text-start pr-40 text-3xl pb-5 font-bold
+}
+
+.tblRows{
+    @apply
+    text-start pr-40 pt-5 text-xl border-b-2 font-semibold
+}
