@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import CustomButton from './CustomButton'
 import { basicAlert, chooseAlert } from './alerts/Alert';
+import { createStudent } from '../services/StudentService';
 
 function AddStudent() {
 
@@ -8,12 +9,18 @@ function AddStudent() {
   const [age, setAge] = useState('');
   const [school, setSchool] = useState('');
   const [address, setAddress] = useState('');
+  const [data, setData] = useState({});
 
   function printDetails(){
-    console.log("name", name);
-    console.log("age", age);
-    console.log("school", school);
-    console.log("address", address);
+    // console.log(data);
+    createStudent(data).then(() => {
+      console.log('Added successfully');
+      clearFields();
+    })
+    .catch((error) => {
+      basicAlert("error","Oops...","Something went wrong!");
+      console.log(error);
+    });
   }
 
   const addStudent = () => {
@@ -22,7 +29,17 @@ function AddStudent() {
       basicAlert("error","Oops...","Please fill all the fields!");
       return     
     }
-    chooseAlert("Are you sure to add this student?","Yes, I'm Sure!","No, Don't!",printDetails,clearFields);
+
+    const data = {
+      name: name,
+      age: age,
+      school: school,
+      address: address
+    }
+
+    setData(data);
+
+    chooseAlert("Are you sure to add this student?","Yes, I'm Sure!","No, Don't!",printDetails);
   }
 
   const clearFields = () => {
