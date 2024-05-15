@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import CustomButton from './CustomButton'
 import { basicAlert, chooseAlert } from './alerts/Alert';
 import { createStudent } from '../services/StudentService';
+import { useNavigate } from 'react-router-dom';
+import { AddIcon,BackIcon } from '../assets/Icons';
 
 function AddStudent() {
 
@@ -9,37 +11,35 @@ function AddStudent() {
   const [age, setAge] = useState('');
   const [school, setSchool] = useState('');
   const [address, setAddress] = useState('');
-  const [data, setData] = useState({});
+  const navigate = useNavigate();
 
-  function printDetails(){
-    // console.log(data);
-    createStudent(data).then(() => {
-      console.log('Added successfully');
+  const studentData = {
+    name: name,
+    age: age,
+    school: school,
+    address: address
+  };
+
+  function addFetching(studentData) {
+    createStudent(studentData).then((response) => {
+      console.log("successfully saved");
+      console.log(response.data);
       clearFields();
     })
-    .catch((error) => {
-      basicAlert("error","Oops...","Something went wrong!");
-      console.log(error);
-    });
+      .catch((error) => {
+        basicAlert("error", "Oops...", "Something went wrong, NOT saved!");
+        console.log(error);
+      });
   }
 
   const addStudent = () => {
 
-    if(name === '' || age === '' || school === '' || address === '') {
-      basicAlert("error","Oops...","Please fill all the fields!");
-      return     
+    if (name === '' || age === '' || school === '' || address === '') {
+      basicAlert("error", "Oops...", "Please fill all the fields!");
+      return
     }
 
-    const data = {
-      name: name,
-      age: age,
-      school: school,
-      address: address
-    }
-
-    setData(data);
-
-    chooseAlert("Are you sure to add this student?","Yes, I'm Sure!","No, Don't!",printDetails);
+    chooseAlert("Are you sure to add this student?", "Yes, I'm Sure!", "No, Don't!", ()=>{addFetching(studentData)});
   }
 
   const clearFields = () => {
@@ -63,7 +63,7 @@ function AddStudent() {
             </label>
             <input
               className="appearance-none border border-gray-400 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="name" type="text" placeholder="Full Name" value={name} onChange={(e) => setName(e.target.value)}/>
+              id="name" type="text" placeholder="Full Name" value={name} onChange={(e) => setName(e.target.value)} />
           </div>
 
           <div className="mb-4">
@@ -72,7 +72,7 @@ function AddStudent() {
             </label>
             <input
               className="appearance-none border border-gray-400 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="age" type="number" placeholder="20" value={age} onChange={(e) => setAge(e.target.value)}/>
+              id="age" type="number" placeholder="20" value={age} onChange={(e) => setAge(e.target.value)} />
           </div>
 
           <div className="mb-4">
@@ -81,7 +81,7 @@ function AddStudent() {
             </label>
             <input
               className="appearance-none border border-gray-400 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="school" type="text" placeholder="Okapathana Vidyalaya" value={school} onChange={(e) => setSchool(e.target.value)}/>
+              id="school" type="text" placeholder="Okapathana Vidyalaya" value={school} onChange={(e) => setSchool(e.target.value)} />
           </div>
 
           <div className="mb-4">
@@ -90,10 +90,13 @@ function AddStudent() {
             </label>
             <input
               className="appearance-none border border-gray-400 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="text" placeholder="No.1, Street Name" value={address} onChange={(e) => setAddress(e.target.value)}/>
+              type="text" placeholder="No.1, Street Name" value={address} onChange={(e) => setAddress(e.target.value)} />
           </div>
 
-          <CustomButton title="Add" onClick={() => { addStudent() }} />
+          <div className="flex items-center justify-between">
+            <CustomButton title="Add" icon={<AddIcon />} onClick={() => { addStudent() }}/>
+            <CustomButton title='Back' icon={<BackIcon />} onClick={() => { navigate('/student') }} />
+          </div>
         </div>
       </div>
     </>

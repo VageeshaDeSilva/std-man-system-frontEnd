@@ -3,6 +3,7 @@ import StudentList from '../components/StudentList'
 import './Student.css'
 import { useNavigate } from 'react-router-dom'
 import CustomButton from '../components/CustomButton';
+import { AddIcon } from '../assets/Icons';
 
 function Student() {
 
@@ -19,7 +20,7 @@ function Student() {
                 Add Student
             </button> */}
             <div className='ml-60 mt-10'>
-                <CustomButton title='Add Student' onClick={() => { addStudent() }} />
+                <CustomButton title='Add Student' icon={<AddIcon />} onClick={() => { addStudent() }} />
             </div>
             <div className='pt-10 flex justify-center'>
                 <StudentList />
