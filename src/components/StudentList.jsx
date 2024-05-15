@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { getAllStudents } from '../services/StudentService';
+import { getAllStudents, deleteStudent } from '../services/StudentService';
 import "./StudentList.css";
-import CustomButton from './CustomButton';
 import { RemoveIcon } from '../assets/Icons';
 
 function StudentList() {
@@ -16,11 +15,18 @@ function StudentList() {
     }, [students])
 
     const deleteStudent = (id) => {
-        if (window.confirm("Are you sure?")) {
-            const newStudents = students.filter((student) => student.id !== id);
-            // setStudents(newStudents);
-            console.log(id);
-        }
+        // try {
+        //     // const newStudents = students.filter((student) => student.id !== id);
+        //     deleteStudent(id).then((response) => {
+        //         console.log(response.data);
+        //     }).catch((error) => {
+        //         console.log(error);
+        //     })
+        //     console.log(id);
+        // }
+        // catch (error) {
+        //     console.log(error);
+        // }
     }
 
     return (
