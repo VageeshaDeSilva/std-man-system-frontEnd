@@ -23,7 +23,7 @@ function AddStudent() {
   function addFetching(studentData) {
     createStudent(studentData).then((response) => {
       console.log("successfully saved");
-      console.log(response.data);
+      // console.log(response.data);
       clearFields();
     })
       .catch((error) => {

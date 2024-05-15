@@ -7,4 +7,4 @@ export const getAllStudents= ()=> axios.get(baseURL);
 
 export const createStudent = (data) => axios.post(baseURL,data);
 
-export const deleteStudent = (id) => axios.delete(`${baseURL}/${id}`)
+export const deleteStudent = (id) => axios.delete(baseURL + '/' + id);

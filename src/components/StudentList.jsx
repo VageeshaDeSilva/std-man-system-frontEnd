@@ -2,32 +2,36 @@ import React, { useEffect, useState } from 'react'
 import { getAllStudents, deleteStudent } from '../services/StudentService';
 import "./StudentList.css";
 import { RemoveIcon } from '../assets/Icons';
+import { chooseAlert } from './alerts/Alert';
 
 function StudentList() {
 
     const [students, setStudents] = useState([]);
     useEffect(() => {
+        getAllstudents();
+    }, [students])
+
+    function getAllstudents() {
         getAllStudents().then((response) => {
             setStudents(response.data);
         }).catch((error) => {
             console.log(error);
         })
-    }, [students])
-
-    const deleteStudent = (id) => {
-        // try {
-        //     // const newStudents = students.filter((student) => student.id !== id);
-        //     deleteStudent(id).then((response) => {
-        //         console.log(response.data);
-        //     }).catch((error) => {
-        //         console.log(error);
-        //     })
-        //     console.log(id);
-        // }
-        // catch (error) {
-        //     console.log(error);
-        // }
     }
+
+    function deleteFetching(id) {
+        deleteStudent(id).then((response) => {
+            console.log(response.data);
+            getAllstudents();
+        }).catch((error) => {
+            console.error(error);
+        })
+    }
+
+    const removeStudent = (id) => {
+        chooseAlert("Are you sure to delete this student?", "Yes, I'm Sure!", "No, Don't!", () => { deleteFetching(id) })      
+    }
+
 
     return (
         <div className='container flex justify-center align-middle mx-10'>
@@ -49,7 +53,7 @@ function StudentList() {
                                 <td className='tblRows'>{student.address}</td>
                                 <td className='tblRows'>
                                     <button className='bg-red-500 hover:bg-red-700 text-white font-bold p-2 rounded'
-                                        onClick={() => { deleteStudent(student.id) }}>
+                                        onClick={() => { removeStudent(student.id) }}>
                                         <RemoveIcon />
                                     </button>
                                 </td>
