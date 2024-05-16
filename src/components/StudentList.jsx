@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getAllStudents, deleteStudent } from '../services/StudentService';
 import "./StudentList.css";
-import { RemoveIcon } from '../assets/Icons';
+import { EditIcon, RemoveIcon } from '../assets/Icons';
 import { chooseAlert } from './alerts/Alert';
 
 function StudentList() {
@@ -52,9 +52,13 @@ function StudentList() {
                                 <td className='tblRows'>{student.school}</td>
                                 <td className='tblRows'>{student.address}</td>
                                 <td className='tblRows'>
-                                    <button className='bg-red-500 hover:bg-red-700 text-white font-bold p-2 rounded'
+                                    <button className='bg-pink-600 hover:bg-pink-700 text-white font-bold p-2 rounded'
                                         onClick={() => { removeStudent(student.id) }}>
                                         <RemoveIcon />
+                                    </button>
+                                    <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold ml-2 p-2 rounded'
+                                        onClick={() => { editStudent(student.id) }}>
+                                        <EditIcon/>
                                     </button>
                                 </td>
                             </tr>

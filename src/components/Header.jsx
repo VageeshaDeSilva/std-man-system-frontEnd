@@ -40,7 +40,7 @@ function Header() {
                         <div className="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
                             <div className="inline-flex rounded-full shadow">
                                 <div href="#"
-                                    className="inline-flex items-center px-4 py-2 text-base text-gray-900 bg-white border border-transparent rounded-full cursor-pointer font-base hover:bg-gray-50 ">
+                                    className="inline-flex items-center px-4 py-2 text-base text-white bg-gray-800 hover:bg-gray-600 border border-transparent rounded-full cursor-pointer font-base">
                                     Sign in
                                 </div>
                             </div>
