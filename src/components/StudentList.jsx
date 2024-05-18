@@ -3,8 +3,11 @@ import { getAllStudents, deleteStudent } from '../services/StudentService';
 import "./StudentList.css";
 import { EditIcon, RemoveIcon } from '../assets/Icons';
 import { chooseAlert } from './alerts/Alert';
+import { useNavigate } from 'react-router-dom';
 
 function StudentList() {
+
+    const navigate=useNavigate();
 
     const [students, setStudents] = useState([]);
     useEffect(() => {
@@ -30,6 +33,10 @@ function StudentList() {
 
     const removeStudent = (id) => {
         chooseAlert("Are you sure to delete this student?", "Yes, I'm Sure!", "No, Don't!", () => { deleteFetching(id) })      
+    }
+
+    const editStudent = (id) => {
+        navigate(`/editStudent/${id}`);
     }
 
 

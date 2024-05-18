@@ -6,6 +6,7 @@ import AboutUs from './pages/AboutUs'
 import Home from './pages/Home'
 import Student from './pages/Student'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import EditStudent from './components/EditStudent'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
             <Route path='/student' element={< Student/>} />
             <Route path='/about' element={<AboutUs/>} />
             <Route path='/addStudent' element={<AddStudent/>} />
+            <Route path='/editStudent/:id' element={<EditStudent/>} />
           </Routes>
           <Footer />
         </div>
